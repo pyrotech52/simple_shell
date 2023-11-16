@@ -25,18 +25,18 @@ void _eputs(char *str)
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _eputchar(char x)
+int _eputchar(char c)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (x == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
 		write(2, buf, i);
 		i = 0;
 	}
-	if (x != BUF_FLUSH)
-		buf[i++] = x;
+	if (c != BUF_FLUSH)
+		buf[++i] = c;
 	return (1);
 }
 /**
@@ -59,25 +59,25 @@ int _putsfd(char *str, int fd)
 	return (i);
 }
 /**
- * _putfd - WRITE the character x to given fd
+ * _putfd - WRITE the character c to given fd
  * @c: The character to print
  * @fd: The filedescriptor to write to
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _putfd(char x, int fd)
+int _putfd(char c, int fd)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (x == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
 		write(fd, buf, i);
 		i = 0;
 	}
-	if (x != BUF_FLUSH)
-		buf[i++] = x;
+	if (c != BUF_FLUSH)
+		buf[++i] = c;
 	return (1);
 }
 
