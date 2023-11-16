@@ -62,4 +62,6 @@ int hsh(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
+void handle_file_open_error(char **argv);
+void populate_and_read_history(info_t *info, char **argv);
 #endif
