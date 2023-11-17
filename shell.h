@@ -27,7 +27,7 @@ typedef struct liststr
 int num;
 char *str;
 struct liststr *next;
-}list_t;
+} list_t;
 
 typedef struct passinfo
 {
@@ -45,7 +45,7 @@ list_t *alias;
 char **environ;
 int env_changed;
 int status;
-char ** cmd_buf;
+char **cmd_buf;
 int cmd_buf_type;
 int readfd;
 int histcount;
@@ -64,4 +64,24 @@ void find_cmd(info_t *);
 void fork_cmd(info_t *);
 void handle_file_open_error(char **argv);
 void populate_and_read_history(info_t *info, char **argv);
+char *getCurrentdirectory(char *buffer, size_t size);
+int validateAndConvert(char *argument);
+int exitShell(info_t *info);
+void _eputs(char *str);
+void _eputchar(char c);
+void _puts(const char *str);
+void print_error(info_t *info, const char *message);
+int handleNoArgument(info_t *info, char *buffer);
+int handleDashargument(info_t *info, char *currentDir, char *buffer);
+void handleChdirResult(info_t *info, int chdirResult, char *currentDir, char *buffer);
+int handleChangeDirArgument(info_t *info);
+void printList(list_t *list);
+int deleteNodeAtIndex(list_t **head, unsigned int index);
+unsigned int getNodeIndex(list_t *list, int (*compare)(char *, char *, char *prefix);
+int nodeStartSwith(list_t *list, char *prefix, int n);
+list_t *addNodeEnd(list_t **head, char *str, int n);
+void _putchar(char c);
+int displayHistory(info_t *info);
+int _putsfd(char *str, int fd);
+int _putfd(char c, int fd);
 #endif

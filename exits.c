@@ -1,72 +1,76 @@
 #include "shell.h"
 
 /**
- **_strncpy - String Copied
- *@dest: Destination of String to be Copied to
- *@src: Source string
- *@n: Amount of Characters to be copied
- *Return: Concatenated of the strings
+ * _strncpy - Custom implementation of string copy
+ * @dest: Destination string
+ * @src: Source string
+ * @n: Number of characters to copy
+ * Return: Pointer to the destination string
  */
-char *_strncpy(char *dest, char *src, int n)
+char _strncpy(char *dest, const char *src, size_t n)
 {
-	int a, b;
-	char *s = dest;
+	size_t i;
 
-	a = 0;
-	while (src[a] != '\0' && a < n - 1)
+	for (i = 0; i < n && src[i] != '\0'; i++)
 	{
-		dest[a] = src[a];
-		++a;
+		dest[i] = src[i];
 	}
-	if (a < n)
-	{
-		b = a;
-		while (b < n)
-		{
-			dest[b] = '\0';
-			++b;
-		}
-	}
-	return (s);
-}
-/**
- **_strncat -Two strings are Concatenated
- *@dest: First string
- *@src: Second string
- *@n: Amount of bytes to be maximally used
- *Return: Concatenated string
- */
-char *_strncat(char *dest, char *src, int n)
-{
-	int a, b;
-	char *s = dest;
 
-	a = 0;
-	b = 0;
-	while (dest[a] != '\0')
-		++a;
-	while (src[b] != '\0' && b < n)
+	while (i < n)
 	{
-		dest[a] = src[b];
-		++a;
-		++b;
+		dest[i++] = '\0';
 	}
-	if (b < n)
-		dest[a] = '\0';
-	return (s);
+
+	return (dest);
 }
+
 /**
- **_strchr - Character in a String are located
- *@s: String to be parsed
- *@c: Character to look for
- *Return: (s) a pointer to the memory area s
+ * _strncat - Custom implementation of string concatenation
+ * @dest: Destination string
+ * @src: Source string
+ * @n: Maximum number of characters to concatenate
+ * Return: Pointer to the destination string
  */
-char *_strchr(char *s, char c)
+char *_strncat(char *dest, const char *src, size_t n)
 {
-	do {
+	 size_t dest_len = 0;
+	size_t i;
+
+	while (dest[dest_len] != '\0')
+	{
+		dest_len++;
+	}
+
+	for (i = 0; i < n && src[i] != '\0'; i++)
+	{
+		dest[dest_len + i] = src[i];
+	}
+
+	if (i < n)
+	{
+		dest[dest_len + i] = '\0';
+	}
+
+	return (dest);
+}
+
+/**
+ * _strchr - Custom implementation of character search in a string
+ * @s: Input string
+ * @c: Character to search for
+ * Return: Pointer to the first occurrence of the character in the string,
+ *         or NULL if the character is not found
+ */
+char *_strchr(const char *s, int c)
+{
+
+	while (*s != '\0')
+	{
 		if (*s == c)
-			return (s);
-	} while (*s++ != '\0');
-
+		{
+			return ((char *)s);
+		}
+		s++;
+	}
 	return (NULL);
 }
