@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
@@ -11,7 +12,6 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <sys/stat.h>
-#include <stddef.h>
 /**
  * struct builtin - builtin strings
  * @type: builtin flah
@@ -70,18 +70,26 @@ int exitShell(info_t *info);
 void _eputs(char *str);
 void _eputchar(char c);
 void _puts(const char *str);
-void print_error(info_t *info, const char *message);
+void printError(info_t *info, const char *message);
 int handleNoArgument(info_t *info, char *buffer);
 int handleDashargument(info_t *info, char *currentDir, char *buffer);
 void handleChdirResult(info_t *info, int chdirResult, char *currentDir, char *buffer);
 int handleChangeDirArgument(info_t *info);
 void printList(list_t *list);
 int deleteNodeAtIndex(list_t **head, unsigned int index);
-unsigned int getNodeIndex(list_t *list, int (*compare)(char *, char *, char *prefix);
-int nodeStartSwith(list_t *list, char *prefix, int n);
+unsigned int getNodeIndex(list_t *list, int (*compare)(list_t *, char *, int), char *prefix);
+list_t *nodeStartsWith(list_t *list, char *prefix, int n);
 list_t *addNodeEnd(list_t **head, char *str, int n);
 void _putchar(char c);
 int displayHistory(info_t *info);
 int _putsfd(char *str, int fd);
 int _putfd(char c, int fd);
+int aliasCompare(char *str, char *prefix, char *unused);
+int displayEnvironment(info_t *info);
+char *_getEnv(info_t *info, const char *name);
+int _setEnvR(info_t *info);
+int unsetEnvR(info_t *info);
+int populateEnv_list(info_t *info);
+int printAlias(list_t *node);
+
 #endif

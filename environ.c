@@ -63,7 +63,7 @@ int unsetEnvR(info_t *info)
 		printError("Too few arguments\n");
 		return (1);
 	}
-	for (int i = 1; i <= info->argv; i++)
+	for (int i = 1; i <= info->argc; i++)
 		unsetEnvVariable(info, info->argc[i]);
 	return (0);
 }
