@@ -77,7 +77,7 @@ void handleChdirResult(info_t *info, int chdirResult, char *currentDir, char *bu
 int handleChangeDirArgument(info_t *info);
 void printList(list_t *list);
 int deleteNodeAtIndex(list_t **head, unsigned int index);
-unsigned int getNodeIndex(list_t *list, int (*compare)(list_t *, char *, int), char *prefix);
+unsigned int getNodeIndex(list_t *list, list_t *(*compare)(list_t *, char *, int), char *prefix);
 list_t *nodeStartsWith(list_t *list, char *prefix, int n);
 list_t *addNodeEnd(list_t **head, char *str, int n);
 void _putchar(char c);
@@ -91,5 +91,6 @@ int _setEnvR(info_t *info);
 int unsetEnvR(info_t *info);
 int populateEnv_list(info_t *info);
 int printAlias(list_t *node);
-
+void printEnvironmentList(list_t *env);
+char *startsWith(const char *str, const char *prefix);
 #endif

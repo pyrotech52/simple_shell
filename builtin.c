@@ -18,7 +18,7 @@ int exitShell(info_t *info)
 		if (exitStatus == 2)
 		{
 			info->status = 2;
-			print_error(info, "Illegal number: ");
+			printError(info, "Illegal number: ");
 			_eputs(info->argv[1]);
 			_eputchar('\n');
 			return (2);
@@ -55,7 +55,7 @@ int helpshell(info_t *info)
 
 int changeDirectory(info_t *info)
 {
-	char *currentDir, *targetDir, buffer[1024];
+	char *currentDir, buffer[1024];
 
 	int chdirResult;
 
